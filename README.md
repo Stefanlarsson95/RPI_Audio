@@ -15,6 +15,15 @@ sudo systemctl enable AudioSupervisor.service
 sudo dpkg-reconfigure tzdata
 reboot
 ```
+#
+For programming the ADA1701 DPS the I2C channel 0 is used. To enable this in Volumio add
+the following to /boot/config.txt
+
+```shell script
+dtparam=i2c_vc=on
+```
+
+
 
 
 Creator: Stefan Larsson 2019

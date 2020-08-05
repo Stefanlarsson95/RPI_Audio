@@ -1,0 +1,4 @@
+Instance  16 Signal ReadBack1_3_ReadBackAlg10 trap value 62 register MAC_out
+Instance  23 Signal rpi_signal_detect_ReadBackAlg3 trap value 110 register MAC_out
+Instance  24 Signal spdif_signal_detect_ReadBackAlg5 trap value 113 register MAC_out
+Instance  25 Signal aux_signal_detect_ReadBackAlg2 trap value 116 register MAC_out

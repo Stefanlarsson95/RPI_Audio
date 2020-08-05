@@ -4,41 +4,52 @@
 # Stops music and restart Spotify client to disable remote connection.
 
 echo "Audio supervisor is running"
-OPENTIME="07:00"
-CLOSINGTIME="00:00"
+OPENTIME="18:25"
+CLOSINGTIME="18:26"
 currenttime=$(date +%H:%M)
+is_open=false
 echo "OPENTIME: $OPENTIME"
 echo "CLOSINGTIME: $CLOSINGTIME"
 echo "System time: $currenttime"
 
-
 # Closing time supervisor
 {
   while :; do
-   currenttime=$(date +%H:%M)
-   if [[ "$currenttime" > "$OPENTIME" ]] || [[ "$currenttime" < "$CLOSINGTIME" ]]; then
-     echo "It is open"
-   else
-     echo "It is closed"
-      echo "Stopping music"
-      #volumio stop stop
-      echo "Closing Spotify connection"
-      #systemctl restart volspotconnect2.service # Fixme not working
-   fi
-   test "$?" -gt 128 && break
-   sleep 60 # closingtime-currenttime
-  done &
+    currenttime=$(date +%H:%M)
+    if [[ "$currenttime" > "$OPENTIME" ]] && [[ "$currenttime" < "$CLOSINGTIME" ]]; then
+      if [[ "$is_open" = false ]]; then
+        echo " The lab is now open: $currenttime"
+        is_open=true
+      else
+        echo "It is open"
+        echo "Current time $currenttime  The lab closes $CLOSINGTIME"
+      fi
+    else
+
+      if [[ "$is_open" = true ]]; then
+        is_open=false
+        echo "The lab is now closed"
+        echo "Stopping music"
+        #volumio stop stop
+        echo "Closing Spotify connection"
+        #systemctl restart volspotconnect2.service # Fixme not working
+      else
+        echo "It is closed"
+        echo "Current time: $currenttime  Lab opens $OPENTIME"
+      fi
+    fi
+    test "$?" -gt 128 && break
+    sleep 5 # closingtime-currenttime
+  done
 }
 
 # Remote connection supervisor. If no music is playing for ~15min, disconnect user by restarting service.
 
 # if [t_last_played > currentitme + 15 && grep 'status' volumio status != 'playing']
 #then
-    #  echo "Closing Spotify connection"
-      #systemctl restart volspotconnect2.service # Fixme not working
+#  echo "Closing Spotify connection"
+#systemctl restart volspotconnect2.service # Fixme not working
 #fi
-
-
 
 # shellcheck disable=SC2028
 echo "\n\nAudio supervisor done."

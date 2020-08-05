@@ -2,6 +2,20 @@
 <project version="4">
   <component name="PublishConfigData" autoUpload="Always" serverName="volumio@projectroom.local:22">
     <serverData>
+      <paths name="AMPI">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="LaZer">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
       <paths name="volumio@ampi:22">
         <serverdata>
           <mappings>
@@ -9,10 +23,17 @@
           </mappings>
         </serverdata>
       </paths>
+      <paths name="volumio@ampi:22 (2)">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
       <paths name="volumio@projectroom.local:22">
         <serverdata>
           <mappings>
-            <mapping deploy="/home/volumio/CASE_DSP" local="$PROJECT_DIR$" />
+            <mapping deploy="/home/volumio/case-AudioSystem" local="$PROJECT_DIR$" />
           </mappings>
         </serverdata>
       </paths>
